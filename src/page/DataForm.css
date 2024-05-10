@@ -1,0 +1,19 @@
+/* DataForm.css */
+.data-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  box-shadow: 10px 4px 8px rgba(250, 250, 250, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  font-family: Arial, sans-serif;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #333;
+  color: #fff;
+}
+
+.pastel-table {
+  background-color: #f0f0f0;
+}
