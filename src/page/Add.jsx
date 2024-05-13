@@ -34,13 +34,13 @@ const Add = ({ onAdd }) => {
   };
 
   const onFinish = (values) => {
-    const { studentName, email, age } = values;
+    const { name, email, age } = values;
     if (existingEmails.includes(email)) {
       message.error('Email already exists. Please enter a different email.');
       return;
     }
 
-    if (studentName.length < 3) {
+    if (name.length < 3) {
       message.error('Please enter at least three characters for the student name.');
       return;
     }
@@ -53,9 +53,8 @@ const Add = ({ onAdd }) => {
     axios
       .post("https://serverless-api-fetizanan.netlify.app/.netlify/functions/api", values)
       .then((res) => {
-        // Update the list of existing emails after adding new data
         fetchExistingEmails();
-        onAdd(res.data); // Pass the newly added data to the parent component
+        onAdd(res.data); 
         message.success('Data added successfully');
         form.resetFields();
         setVisible(false);
@@ -76,7 +75,7 @@ const Add = ({ onAdd }) => {
         visible={visible}
         onCancel={handleCancel}
         footer={null}
-        style={{ backgroundColor: '#f0f0f0' }} // Apply pastel background color directly
+        style={{ backgroundColor: '#f0f0f0' }}
       >
         <Form form={form} onFinish={onFinish} layout="vertical">
           <Form.Item name="name" label="Student Name" rules={[{ required: true, message: 'Please enter student name' }]}>

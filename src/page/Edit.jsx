@@ -18,9 +18,9 @@ const Edit = ({ record, onCancel, onUpdate }) => {
   };
 
   const onFinish = (values) => {
-    const { studentName, email, age } = values;
+    const { name, email, age } = values;
 
-    if (studentName.length < 3) {
+    if (name.length < 3) {
       message.error('Please enter at least three characters for the student name.');
       return;
     }
@@ -61,8 +61,7 @@ const Edit = ({ record, onCancel, onUpdate }) => {
         <Form.Item
           name="name"
           label="Student Name"
-          rules={[{ required: true, message: "Please input the student name!" },
-          { type: 'string', message: "Please input a valid email address!" }
+          rules={[{ required: true, message: "Please input the student name!" }
           ]}
         >
           <Input />

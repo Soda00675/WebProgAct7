@@ -26,17 +26,19 @@ const DataForm = () => {
       });
   };
 
-  const handleDelete = (id) => {
+  function handleDelete(id) {
     axios
-      .delete(`https://serverless-api-fetizanan.netlify.app/.netlify/functions/api/${id}`)
+      .delete( `https://serverless-api-fetizanan.netlify.app/.netlify/functions/api/${id}`)
       .then(() => {
-        setData(data.filter((item) => item.id !== id));
+        setData(data.filter((item) => item._id !== id));
         message.success('Data deleted successfully');
       })
       .catch((error) => {
-        console.error('Error deleting data: ', error);
+        console.error("Error deleting data: ", error);
       });
-  };
+  }
+  
+  
 
   const handleUpdateClick = (record) => {
     setUpdateRecord(record);
@@ -63,7 +65,7 @@ const DataForm = () => {
       title: 'Email',
       dataIndex: 'email',
       key: 'email',
-      width: 680, 
+      width: 780, 
     },
     {
       title: 'Age',
@@ -72,25 +74,20 @@ const DataForm = () => {
       width: 400, 
     },
     {
-      title: (
-        <span>
-          Action
-          <Add onAdd={handleAdd} />
-        </span>
-      ),
+      title: 'Action',
       key: 'action',
       render: (text, record) => (
         <span className="flex gap-3">
-          <EditOutlined style={{ width: '3rem' }} onClick={() => handleUpdateClick(record)} />
-
+          <EditOutlined style={{ width: '3rem', color: 'blue' }} onClick={() => handleUpdateClick(record)} />
           <Popconfirm
             title="Are you sure you want to delete this data?"
             onConfirm={() => handleDelete(record.id)}
             okText="Yes"
             cancelText="No"
-          >
-            <DeleteOutlined type="primary" color="red" />
+>
+            <DeleteOutlined style={{ color: 'red' }} />
           </Popconfirm>
+
         </span>
       ),
     },
@@ -100,6 +97,7 @@ const DataForm = () => {
     <div className="data-form-container">
       <Table columns={columns} dataSource={data} className="pastel-table" />
       {updateMode && <Update record={updateRecord} onCancel={() => setUpdateMode(false)} onUpdate={handleUpdate} />}
+      <Add onAdd={handleAdd} /> {/* Add component rendered within the same screen */}
     </div>
   );
 };
