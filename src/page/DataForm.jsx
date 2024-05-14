@@ -81,7 +81,7 @@ const DataForm = () => {
           <EditOutlined style={{ width: '3rem', color: 'blue' }} onClick={() => handleUpdateClick(record)} />
           <Popconfirm
             title="Are you sure you want to delete this data?"
-            onConfirm={() => handleDelete(record.id)}
+            onConfirm={() => handleDelete(record._id)}
             okText="Yes"
             cancelText="No"
 >
